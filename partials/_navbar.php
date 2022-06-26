@@ -12,19 +12,19 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Login
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Student</a></li>
-            <li><a class="dropdown-item" href="#">Company</a></li>
-            <li><a class="dropdown-item" href="#">Admin</a></li>
+          <ul class="dropdown-menu bg-dark " aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item text-bg-dark" href="#">Student</a></li>
+            <li><a class="dropdown-item text-bg-dark" href="#">Company</a></li>
+            <li><a class="dropdown-item text-bg-dark" href="#">Admin</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Signup
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="student_signup.php">Student</a></li>
-            <li><a class="dropdown-item" href="#">Company</a></li>
+          <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item text-bg-dark" href="student_signup.php">Student</a></li>
+            <li><a class="dropdown-item text-bg-dark" href="company_signup.php">Company</a></li>
           </ul>
         </li>
         <li class="nav-item">

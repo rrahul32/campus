@@ -1,50 +1,59 @@
 <?php
 include 'partials/_template.php';
 include 'partials/_navbar.php';
-include 'config.php';
 ?>
 <script>
-  document.getElementById('title').innerText='Student Sign Up';
-  </script>
-<div class='container'>
-  <form action="signup.php" method="POST">
-<div class="row">
-  <div class="col">
-    <input type="text" class="form-control" placeholder="First name" aria-label="First name" name="fname" required>
+  document.getElementById('title').innerText = 'Student Sign Up';
+</script>
+<form action="" method="post">
+<div class="container mt-5 border border-3 rounded col-6 px-5 py-3">
+  <div class="row">
+    <h1 class="text-center">
+      Sign Up
+    </h1>
+    <p class="text-center">Already a member? <a href="student_login.php">Login</a></p>
   </div>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" name="lname" required>
-  </div>
+  <div class="row">
+    <div class="form-floating col-6 mb-3">
+      <input type="text" class="form-control " id="floatingInput" placeholder="Mark" name="fname" required>
+      <label for="floatingInput" style="left:auto">First Name</label>
+    </div>
+    <div class="form-floating col-6 mb-3">
+      <input type="text" class="form-control" id="floatingInput" placeholder="Woods" name="lname" required>
+      <label for="floatingInput" style="left:auto">Last Name</label>
+    </div>
 </div>
-  <div class="mb-3">
-       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address" name="email" required>
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required>
+    <label for="floatingInput">Email address</label>
   </div>
-  <div class="mb-3">
-     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
+  <div class="form-floating pb-3">
+    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required>
+    <label for="floatingPassword">Password</label>
   </div>
-  <div class="mb-3">
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder=" Re-enter password" name="cpassword" required>
+  <div class="form-floating pb-3">
+    <input type="password" class="form-control" id="floatingPassword" placeholder="Confirm Password" name="cpassword" required>
+    <label for="floatingPassword">Confirm Password</label>
   </div>
-  <button type="submit" class="btn btn-primary">Signup</button>
+  <div class="d-grid">
+  <input class="btn btn-primary" type="submit" value="Sign Up">
+</div>
+</div>
 </form>
-</div>
 <?php
-  if($_SERVER["REQUEST_METHOD"]=="POST")
-  {
-$password=$_POST["password"];
-$cpassword=$_POST["cpassword"];
-if($password==$cpassword)
-{
-  $email=$_POST['email'];
-  $fname=$_POST['fname'];
-  $lname=$_POST['lname'];
-  $sql = "INSERT INTO `student` (`pwd`, `email`, `fname`, `lname`) VALUES ('$password', '$email', '$fname', '$lname');";
-  $result= mysqli_query($conn,$sql);
-  if($result)
-  {
-    echo "Successfully signed up";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  include 'config.php';
+  $password = $_POST["password"];
+  $cpassword = $_POST["cpassword"];
+  if ($password == $cpassword) {
+    $email = $_POST['email'];
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $sql = "INSERT INTO `student` (`pwd`, `email`, `fname`, `lname`) VALUES ('$password', '$email', '$fname', '$lname');";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+      echo "<div class='alert alert-success' role='alert'>Successfully Signed Up!</div>";
+    }
   }
 }
-  }
 ?>
