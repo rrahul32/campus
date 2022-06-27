@@ -1,6 +1,5 @@
 <?php
 include 'partials/_template.php';
-include 'partials/_navbar.php'
 ?>
 <div class="container mt-5">
 <div class="row">

@@ -9,6 +9,9 @@
 </head>
 
 <body>
+<?php include 'partials/_navbar.php';
+?>
+
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
 

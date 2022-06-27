@@ -1,12 +1,11 @@
 <?php
 include 'partials/_template.php';
-include 'partials/_navbar.php';
 ?>
 <script>
     document.getElementById('title').innerText = 'Company Sign Up';
 </script>
 <form action="" method="POST">
-<div class="container mt-5 border border-3 rounded col-6 px-5 py-3">
+<div class="container my-5 col-10 border border-3 rounded px-5 py-3">
     <div class="row">
         <h1 class="text-center">
             Sign Up
@@ -40,10 +39,11 @@ include 'partials/_navbar.php';
 </form>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include 'config.php';
+    include 'partials/config.php';
     $password = $_POST["password"];
     $cpassword = $_POST["cpassword"];
-    if ($password == $cpassword) {
+    $duplicate=false;
+    if (($password == $cpassword) &&(!$duplicate) ) {
         $email = $_POST['email'];
         $cname = $_POST['cname'];
         $loc= $_POST['loc'];
