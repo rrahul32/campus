@@ -1,5 +1,6 @@
 <?php
-include 'partials/_template.php';
+$pageTitle="Signup To Campus Recruitment Portal";
+include_once 'partials/_template.php';
 ?>
 <script>
   document.getElementById('title').innerText = 'Student Sign Up';
@@ -39,6 +40,9 @@ include 'partials/_template.php';
 </div>
 </div>
 </form>
+<?php
+include_once 'partials/_footer.php'
+?>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   include 'partials/config.php';

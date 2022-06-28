@@ -4,17 +4,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title id='title'>Welcome to Campus Recruitment Portal</title>
+  <title id='title'><?php echo $pageTitle; ?></title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 </head>
 
 <body>
-<?php include 'partials/_navbar.php';
-?>
-
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-
-</body>
-
-</html>
+  <header>
+    <?php include 'partials/_navbar.php';
+    ?>
+  </header>
+  

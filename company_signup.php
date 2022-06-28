@@ -1,9 +1,7 @@
 <?php
-include 'partials/_template.php';
+$pageTitle="Signup To Campus Recruitment Portal";
+include_once 'partials/_template.php';
 ?>
-<script>
-    document.getElementById('title').innerText = 'Company Sign Up';
-</script>
 <form action="" method="POST">
 <div class="container my-5 col-10 border border-3 rounded px-5 py-3">
     <div class="row">
@@ -37,6 +35,9 @@ include 'partials/_template.php';
     </div>
 </div>
 </form>
+<?php
+include_once 'partials/_footer.php'
+?>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include 'partials/config.php';

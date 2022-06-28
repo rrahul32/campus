@@ -1,5 +1,6 @@
 <?php
-include 'partials/_template.php';
+$pageTitle="Welcome to Campus Recruitment Portal";
+include_once 'partials/_template.php';
 ?>
 <div class="container mt-5">
 <div class="row">
@@ -23,3 +24,4 @@ include 'partials/_template.php';
   </div>
 </div>
 </div>
+<?php include_once 'partials/_footer.php'?>
