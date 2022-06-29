@@ -50,7 +50,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         </div>
         <div class="row text-center">
             <p>
-                New user? <a href="company_login.php">Sign Up</a>
+                New user? <a href="student_signup.php">Sign Up</a>
             </p>
         </div>
         <div class="row">
