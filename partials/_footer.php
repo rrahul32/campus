@@ -1,4 +1,3 @@
-<div class="row">
 <footer class=" fixed-bottom bg-dark text-center text-white">
     <!-- Grid container -->
     <div class="row pt-3">
@@ -34,7 +33,6 @@
     <div class="row p-3" style="background-color: rgba(0, 0, 0, 0.2)">
     <div class="col-8 mx-auto">
     © 2022 Copyright: Campus Recruitment Portal
-    </div>
     </div>
     </div>
     <!-- Copyright -->
