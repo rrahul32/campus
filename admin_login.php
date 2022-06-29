@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             ?>
         </div>
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="eg:Infosys" name="uname" required>
+            <input type="text" class="form-control" id="floatingInput" placeholder="eg:Infosys" name="uname" required>
             <label for="floatingInput">Username</label>
         </div>
         <div class="form-floating mb-3">
