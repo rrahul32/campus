@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/project/campus">
+    <a class="navbar-brand" href="">
       <img src="images/index.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
       Campus Recruitment Portal</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,9 +13,9 @@
             Login
           </a>
           <ul class="dropdown-menu dropdown-menu-dark " aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item " href="#">Student</a></li>
-            <li><a class="dropdown-item " href="#">Company</a></li>
-            <li><a class="dropdown-item " href="#">Admin</a></li>
+            <li><a class="dropdown-item " href="student_login.php">Student</a></li>
+            <li><a class="dropdown-item " href="company_login.php">Company</a></li>
+            <li><a class="dropdown-item " href="admin_login.php">Admin</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
