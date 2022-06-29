@@ -47,11 +47,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             <input type="password" class="form-control" id="floatingInput" placeholder="password" name="password" required>
             <label for="floatingInput">Password</label>
         </div>
-        <div class="row text-center">
-            <p>
-                New user? <a href="company_signup.php">Sign Up</a>
-            </p>
-        </div>
         <div class="row">
             <input class="btn btn-primary" type="submit" value="Login">
         </div>
