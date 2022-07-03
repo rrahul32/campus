@@ -40,17 +40,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             ?>
         </div>
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="eg:Infosys" name="uname" required>
+            <input type="text" class="form-control" id="floatingInput" placeholder="eg:Infosys" name="uname" required>
             <label for="floatingInput">Username</label>
         </div>
         <div class="form-floating mb-3">
             <input type="password" class="form-control" id="floatingInput" placeholder="password" name="password" required>
             <label for="floatingInput">Password</label>
-        </div>
-        <div class="row text-center">
-            <p>
-                New user? <a href="company_login.php">Sign Up</a>
-            </p>
         </div>
         <div class="row">
             <input class="btn btn-primary" type="submit" value="Login">
