@@ -1,4 +1,6 @@
 <?php
+session_start();
+include_once 'partials/_redirect.php';
 $pageTitle="Login To Campus Recruitment Portal";
 include_once 'partials/_template.php';
 $exists=true;

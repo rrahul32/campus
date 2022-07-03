@@ -36,7 +36,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="dashboard.php" <?php
+          <a class="nav-link" href="student_dashboard.php" <?php
         if(!isset($student))
         echo "hidden";
         ?>>Dashboard</a>

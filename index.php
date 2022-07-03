@@ -1,14 +1,12 @@
 <?php
-session_start();
-// echo var_dump($_SESSION);
-if (isset($_SESSION['type']) && ($_SESSION['type'] == 'student')) //check if student
-{
-  $student = true;
-  $fname = $_SESSION['fname'];
-  $lname = $_SESSION['lname'];
-  $pageTitle = "Welcome $fname $lname";
-} else
-  $pageTitle = "Welcome to Campus Recruitment Portal";
+include_once 'partials/_login.php';
+if (isset($_SESSION['loggedin'])) {
+     if ($_SESSION['type'] == "company")
+        header("Location: company_dashboard.php");
+    else if ($_SESSION['type'] == "admin")
+        header("Location: admin_dashboard.php");
+}
+$pageTitle = "Welcome to Campus Recruitment Portal";
 include_once 'partials/_template.php';
 ?>
 <div class="container mt-5">

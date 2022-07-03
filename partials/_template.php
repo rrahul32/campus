@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +11,8 @@
     document.addEventListener("DOMContentLoaded", ()=>
     {
       let padding=document.getElementsByTagName('footer')[0].clientHeight;
-      console.log(padding);
+      //console.log(padding);
+      padding+=10;
       document.getElementsByTagName('body')[0].style.paddingBottom=`${padding}px`;
     }
     );

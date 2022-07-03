@@ -1,4 +1,6 @@
 <?php
+session_start();
+include_once 'partials/_redirect.php';
 $pageTitle="Login To Campus Recruitment Portal";
 include_once 'partials/_template.php';
 $exists=true;
@@ -20,10 +22,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         $pass_match=($password==$row[0]);
         if($pass_match)
         {
-           session_start();
            $_SESSION["email"]=$email;
            $_SESSION["fname"]=$fname;
            $_SESSION["lname"]=$lname;
+           $_SESSION["loggedin"]=true;
            $_SESSION["type"]="student";
            header("Location: index.php");
         }
