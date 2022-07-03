@@ -1,5 +1,5 @@
 <?php
-include_once 'partials/_login.php';
+session_start();
 if (isset($_SESSION['loggedin'])) {
     if ($_SESSION['type'] == "student")
         header("Location: student_dashboard.php");

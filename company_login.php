@@ -1,33 +1,30 @@
 <?php
-session_start();
 include_once 'partials/_redirect.php';
-$pageTitle="Login To Campus Recruitment Portal";
+$pageTitle = "Login To Campus Recruitment Portal";
 include_once 'partials/_template.php';
-$exists=true;
-$pass_match=true;
-if($_SERVER["REQUEST_METHOD"]=="POST")
-{
+$exists = true;
+$pass_match = true;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include 'partials/config.php';
-    $email=$_POST['email'];
-    $password=$_POST['password'];
-    $sql="SELECT * FROM `company` WHERE `email`='$email'";
-    $result= mysqli_query($conn, $sql);
-    $row=mysqli_fetch_row($result);
-    if(!$row)
-    $exists=false;
-    else
-    {
-        $cname=$row[2];
-        $loc=$row[3];
-        $pass_match=($password==$row[0]);
-        //if($pass_match)
-        //{
-          //  sess
-        //}
-
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $sql = "SELECT * FROM `company` WHERE `email`='$email'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_row($result);
+    if (!$row)
+        $exists = false;
+    else {
+        $cname = $row[2];
+        $loc = $row[3];
+        $pass_match = ($password == $row[0]);
+        if ($pass_match) {
+            $_SESSION['cname'] = $cname;
+            $_SESSION['loggedin'] = true;
+            $_SESSION['type'] = "company";
+            header("Location: company_dashboard.php");
+        }
     }
-
-    }
+}
 ?>
 <form action="" method="post">
     <div class="container my-5 col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 border border-3 rounded px-5 py-3">
@@ -38,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             <?php
             if (!$exists)
                 echo "<div class='alert alert-danger text-center col-10 mx-auto' role='alert'>No account found with this email!</div>";
-            else if(!$pass_match)
+            else if (!$pass_match)
                 echo "<div class='alert alert-danger text-center col-10 mx-auto' role='alert'>Incorrect Password</div>";
             ?>
         </div>

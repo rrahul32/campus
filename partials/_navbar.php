@@ -10,7 +10,7 @@
       <ul class="navbar-nav">
         <li class="nav-item dropdown" 
         <?php
-        if(isset($student))
+        if(isset($_SESSION['loggedin']))
         echo "hidden";
         ?>
         >
@@ -24,7 +24,7 @@
           </ul>
         </li>
         <li class="nav-item dropdown"  <?php
-        if(isset($student))
+        if(isset($_SESSION['loggedin']))
         echo "hidden";
         ?>>
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,13 +37,13 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="student_dashboard.php" <?php
-        if(!isset($student))
+        if(!isset($_SESSION['loggedin']))
         echo "hidden";
         ?>>Dashboard</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="logout.php"  <?php
-        if(!isset($student))
+        if(!isset($_SESSION['loggedin']))
         echo "hidden";
         ?>>Logout</a>
         </li>

@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once 'partials/_redirect.php';
 $pass_match = true;
 $success = false;
