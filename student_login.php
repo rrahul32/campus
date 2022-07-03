@@ -18,10 +18,15 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         $fname=$row[2];
         $lname=$row[3];
         $pass_match=($password==$row[0]);
-        //if($pass_match)
-        //{
-          //  sess
-        //}
+        if($pass_match)
+        {
+           session_start();
+           $_SESSION["email"]=$email;
+           $_SESSION["fname"]=$fname;
+           $_SESSION["lname"]=$lname;
+           $_SESSION["type"]="student";
+           header("Location: index.php");
+        }
 
     }
 
