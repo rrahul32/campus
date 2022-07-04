@@ -1,13 +1,15 @@
 <?php
+//echo $_SERVER['DOCUMENT_ROOT'];
+
 session_start();
 if (isset($_SESSION['loggedin'])) {
      if ($_SESSION['type'] == "company")
-        header("Location: company_dashboard.php");
+        header("Location: /campus/company");
     else if ($_SESSION['type'] == "admin")
-        header("Location: admin_dashboard.php");
+        header("Location: /campus/admin");
 }
 $pageTitle = "Welcome to Campus Recruitment Portal";
-include_once 'partials/_template.php';
+ include_once $_SERVER['DOCUMENT_ROOT']."/campus/partials/_template.php";
 ?>
 <div class="container mt-5">
   <div class="row">
@@ -31,4 +33,4 @@ include_once 'partials/_template.php';
     </div>
   </div>
 </div>
-<?php include_once 'partials/_footer.php' ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_footer.php' ?>

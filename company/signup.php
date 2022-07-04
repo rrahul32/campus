@@ -1,10 +1,10 @@
 <?php
-include_once 'partials/_redirect.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_redirect.php';
 $pass_match = true;
 $success = false;
 $duplicate = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include 'partials/config.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/config.php';
     $password = $_POST["password"];
     $cpassword = $_POST["cpassword"];
     $email = $_POST['email'];
@@ -26,15 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pass_match = false;
 }
 $pageTitle = "Signup To Campus Recruitment Portal";
-include_once 'partials/_template.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_template.php';
 ?>
-<form action="" method="POST">
+<form action="/campus/company/signup.php" method="POST">
     <div class="container my-5 col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 border border-3 rounded px-5 py-3">
         <div class="row">
             <h1 class="text-center">
                 Sign Up
             </h1>
-            <p class="text-center">Already a member? <a href="company_login.php">Login</a></p>
+            <p class="text-center">Already a member? <a href="/campus/company/login.php">Login</a></p>
         </div>
         <div class="row">
             <?php
@@ -72,5 +72,5 @@ include_once 'partials/_template.php';
     </div>
 </form>
 <?php
-include_once 'partials/_footer.php'
+include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_footer.php'
 ?>

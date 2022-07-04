@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title id='title'><?php echo $pageTitle; ?></title>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <link href="/campus/css/bootstrap.min.css" rel="stylesheet">
+  <script src="/campus/js/popper.js"></script>
+  <script src="/campus/js/bootstrap.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", ()=>
     {
@@ -21,7 +21,7 @@
 
 <body>
   <header>
-    <?php include 'partials/_navbar.php';
+    <?php include $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_navbar.php';
     ?>
   </header>
   

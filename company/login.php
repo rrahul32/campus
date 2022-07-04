@@ -1,11 +1,11 @@
 <?php
-include_once 'partials/_redirect.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_redirect.php';
 $pageTitle = "Login To Campus Recruitment Portal";
-include_once 'partials/_template.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_template.php';
 $exists = true;
 $pass_match = true;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include 'partials/config.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/config.php';
     $email = $_POST['email'];
     $password = $_POST['password'];
     $sql = "SELECT * FROM `company` WHERE `email`='$email'";
@@ -21,12 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['cname'] = $cname;
             $_SESSION['loggedin'] = true;
             $_SESSION['type'] = "company";
-            header("Location: company_dashboard.php");
+            header("Location: /campus/company");
         }
     }
 }
 ?>
-<form action="" method="post">
+<form action="/campus/company/login.php" method="post">
     <div class="container my-5 col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 border border-3 rounded px-5 py-3">
         <div class="row text-center">
             <h2>Login</h2>
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="row text-center">
             <p>
-                New user? <a href="company_login.php">Sign Up</a>
+                New user? <a href="/campus/company/signup.php">Sign Up</a>
             </p>
         </div>
         <div class="row">
@@ -59,5 +59,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 
 <?php
-include_once 'partials/_footer.php'
+include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_footer.php'
 ?>

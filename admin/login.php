@@ -1,12 +1,12 @@
 <?php
-include_once 'partials/_redirect.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_redirect.php';
 $pageTitle="Login To Campus Recruitment Portal";
-include_once 'partials/_template.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_template.php';
 $exists=true;
 $pass_match=true;
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
-    include 'partials/config.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/campus/partials/config.php';
     $uname=$_POST['uname'];
     $password=$_POST['password'];
     $sql="SELECT * FROM `admin` WHERE `uname`='$uname'";
@@ -22,14 +22,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         {
             $_SESSION['loggedin'] = true;
             $_SESSION['type'] = "admin";
-            header("Location: admin_dashboard.php");
+            header("Location: /campus/admin");
         }
 
     }
 
     }
 ?>
-<form action="" method="post">
+<form action="/campus/admin/login.php" method="post">
     <div class="container my-5 col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 border border-3 rounded px-5 py-3">
         <div class="row text-center">
             <h2>Login</h2>
@@ -57,5 +57,5 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 </form>
 
 <?php
-include_once 'partials/_footer.php'
+include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_footer.php';
 ?>

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="index.php">
-      <img src="images/index.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+    <a class="navbar-brand" href="/campus">
+      <img src="/campus/images/index.png" alt="CRP" width="30" height="30" class="d-inline-block align-text-top">
       Campus Recruitment Portal</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -18,9 +18,9 @@
             Login
           </a>
           <ul class="dropdown-menu dropdown-menu-dark " aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item " href="student_login.php">Student</a></li>
-            <li><a class="dropdown-item " href="company_login.php">Company</a></li>
-            <li><a class="dropdown-item " href="admin_login.php">Admin</a></li>
+            <li><a class="dropdown-item " href="/campus/student/login.php">Student</a></li>
+            <li><a class="dropdown-item " href="/campus/company/login.php">Company</a></li>
+            <li><a class="dropdown-item " href="/campus/admin/login.php">Admin</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown"  <?php
@@ -31,24 +31,24 @@
             Signup
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="student_signup.php">Student</a></li>
-            <li><a class="dropdown-item" href="company_signup.php">Company</a></li>
+            <li><a class="dropdown-item" href="/campus/student/signup.php">Student</a></li>
+            <li><a class="dropdown-item" href="/campus/company/signup.php">Company</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="student_dashboard.php" <?php
+          <a class="nav-link" href="/campus/student" <?php
         if(!isset($_SESSION['loggedin']))
         echo "hidden";
         ?>>Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="logout.php"  <?php
+          <a class="nav-link" href="/campus/logout.php"  <?php
         if(!isset($_SESSION['loggedin']))
         echo "hidden";
         ?>>Logout</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="aboutus.php">About Us</a>
+          <a class="nav-link" href="/campus/aboutus.php">About Us</a>
         </li>
       </ul>
     </div>
