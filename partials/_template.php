@@ -21,7 +21,19 @@
 
 <body>
   <header>
-    <?php include $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_navbar.php';
+    <?php 
+   if(!isset($_SESSION['loggedin']))
+   include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_navbar_nologin.php';
+   else
+   {
+     if($_SESSION['type']=='student')
+     include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_navbar_student.php';
+     else if($_SESSION['type']=='admin')
+     include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_navbar_admin.php';
+     else if($_SESSION['type']=='company')
+     include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_navbar_company.php';
+     
+   }
     ?>
   </header>
   

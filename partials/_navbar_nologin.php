@@ -8,12 +8,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item dropdown" 
-        <?php
-        if(isset($_SESSION['loggedin']))
-        echo "hidden";
-        ?>
-        >
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Login
           </a>
@@ -23,10 +18,7 @@
             <li><a class="dropdown-item " href="/campus/admin/login.php">Admin</a></li>
           </ul>
         </li>
-        <li class="nav-item dropdown"  <?php
-        if(isset($_SESSION['loggedin']))
-        echo "hidden";
-        ?>>
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Signup
           </a>
@@ -34,18 +26,6 @@
             <li><a class="dropdown-item" href="/campus/student/signup.php">Student</a></li>
             <li><a class="dropdown-item" href="/campus/company/signup.php">Company</a></li>
           </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/campus/student" <?php
-        if(!isset($_SESSION['loggedin']))
-        echo "hidden";
-        ?>>Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/campus/logout.php"  <?php
-        if(!isset($_SESSION['loggedin']))
-        echo "hidden";
-        ?>>Logout</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/campus/aboutus.php">About Us</a>
