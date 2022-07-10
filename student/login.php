@@ -18,12 +18,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     {
         $fname=$row[2];
         $lname=$row[3];
+        $sid=$row[4];
         $pass_match=($password==$row[0]);
         if($pass_match)
         {
            $_SESSION["email"]=$email;
            $_SESSION["fname"]=$fname;
            $_SESSION["lname"]=$lname;
+           $_SESSION["sid"]=$sid;
            $_SESSION["loggedin"]=true;
            $_SESSION["type"]="student";
            header("Location: /campus/student");
