@@ -3,6 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_redirect.php';
 $pass_match = true;
 $success = false;
 $duplicate = false;
+$emailInDb=false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/config.php';
   $password = $_POST["password"];
@@ -13,6 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $duplicate_rows = mysqli_num_rows($duplicate_result);
   if ($duplicate_rows)
     $duplicate = true;
+  else
+  {
+    $email_query = "SELECT * FROM `student_academic` WHERE `semail`='$email';";
+    $email_result = mysqli_query($conn, $duplicate_query);
+    $email_rows = mysqli_num_rows($duplicate_result);
+    if ($email_rows)
+    $emailInDb = true;
+  }
   if (($password == $cpassword)&&(!$duplicate))
   {
     $fname = $_POST['fname'];
@@ -33,7 +42,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_template.php';
   <div class="container mt-5 border border-3 rounded col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 px-5 py-3">
     <div class="row">
       <h1 class="text-center">
-        Sign Up
+        Student Sign Up
       </h1>
       <p class="text-center">Already a member? <a href="/campus/student/login.php">Login</a></p>
     </div>
@@ -45,6 +54,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_template.php';
                 echo "<div class='alert alert-danger text-center col-10 mx-auto' role='alert'>Email already in use!</div>";
             else if(!$pass_match)
                 echo "<div class='alert alert-danger text-center col-10 mx-auto' role='alert'>Passwords do not match!</div>";
+              else if($emailInDb)
+              echo "<div class='alert alert-danger text-center col-10 mx-auto' role='alert'>Email not in college database! Please contact admin</div>";
             ?>
         </div>
     <div class="row">

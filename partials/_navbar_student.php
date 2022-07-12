@@ -42,7 +42,8 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="account">
                     <li><a class="dropdown-item " href="/campus/student/profile.php">Profile</a></li>
-                    <li><a class="dropdown-item " href="/campus/student/settings.php">Settings</a></li>
+                    <li><a class="dropdown-item " href="/campus/student/changepass.php">Change Password</a></li>
+                    <li><a class="dropdown-item " href="/campus/student/appliedjobs.php">Jobs Applied</a></li>
                     <li><a class="dropdown-item " href="/campus/logout.php">Logout</a></li>
                 </ul>
             </li>

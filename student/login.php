@@ -23,8 +23,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         if($pass_match)
         {
            $_SESSION["email"]=$email;
-           $_SESSION["fname"]=$fname;
-           $_SESSION["lname"]=$lname;
            $_SESSION["sid"]=$sid;
            $_SESSION["loggedin"]=true;
            $_SESSION["type"]="student";
@@ -38,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 <form action="/campus/student/login.php" method="post">
     <div class="container my-5 col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 border border-3 rounded px-5 py-3">
         <div class="row text-center">
-            <h2>Login</h2>
+            <h2>Student Login</h2>
         </div>
         <div class="row">
             <?php
