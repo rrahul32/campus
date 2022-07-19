@@ -14,6 +14,7 @@ if (isset($_SESSION['loggedin'])) {
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/config.php';
 //GET search
+$sid=$_SESSION['sid'];
 if (isset($_GET['search'])) {
     $search = $_GET['search'];
     $searchLower = strtolower($search);
@@ -35,11 +36,11 @@ if ($row_length > 0) {
 
 //POST-APPLY NOW
 if(isset($_POST['applyNow'])){
-    $sid=$_SESSION['sid'];
     $jid=$_POST['jid'];
-    $sql="INSERT INTO `applied`(`jid`,`sid`) VALUES($jid,$sid)";
-    $result=mysqli_query($conn,$sql);
-
+    $sql_applied="INSERT INTO `applied`(`jid`,`sid`) VALUES($jid,$sid)";
+    $result_applied=mysqli_query($conn,$sql_applied);
+    $sql_appstatus="INSERT INTO `appstatus`(`appid`) VALUES((SELECT `appid` FROM `applied` WHERE `jid`=$jid AND `sid`=$sid));";
+    $result=mysqli_query($conn,$sql_appstatus);
 
 }
 $pageTitle = "View Jobs: Campus Recruitment Management System";
@@ -167,31 +168,6 @@ else
         <div class='1'> </div>
     </div>
 </div>
-<?php
-// Recent search
-// if (!$_SESSION['match']) {
-//     echo "<div class='container px-auto text-center p-2'>
-//     <div class='row'>
-//         <h3>Recent Search</h3>
-//     </div>
-//     <ul class='nav flex-column col-6 mx-auto bg-white'>";
-//     if (isset($_SESSION['recent'])) {
-//         for ($i = 3; $i >= 0; $i--) {
-//             if (!isset($_SESSION['recent'][$i]))
-//                 continue;
-//             $value = $_SESSION['recent'][$i];
-//             if ($value != NULL)
-//                 echo "<li class='nav-item border border-light'>
-//             <a class='nav-link text-primary' href='/campus/student//?search=$value&submit=Find+Jobs'>
-//             $value
-//             </a>
-//             </li>";
-//         }
-//     }
-//     echo "</ul>
-// </div>";
-// }
-?>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/_footer.php';
 ?>

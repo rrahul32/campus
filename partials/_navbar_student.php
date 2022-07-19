@@ -14,10 +14,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/campus/student" >Search Jobs</a>
+                    <a class="nav-link" href="/campus/student">Search Jobs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/campus/student">Companies</a>
+                    <a class="nav-link" href="/campus/student/companies.php">Companies</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/campus/aboutus.php">About Us</a>
@@ -30,11 +30,39 @@
                 <a class="nav-link pe-5" href="#" id="notifications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="/campus/images/notifications.svg" alt="Account" height="25" width="25">
                 </a>
-                <div class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="notifications">
-                    <div>
-                        <div class="text-center">No Notifications</div>
-                    </div>
-                </div>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="notifications" style="min-width:350px">
+        
+                        <?php
+                        //Checking for notifications
+                        $noNotifications = true;
+                        $sql_noti = "SELECT `appstatus`,`jname`,`cname` FROM `appstatus` JOIN `applied` ON `appstatus`.`appid`=`applied`.`appid` JOIN `job` ON `applied`.`jid`=`job`.`jid` JOIN `company` ON `company`.`cid`=`job`.`cid` WHERE `appstatus`.`appid`IN (SELECT `appid` FROM `applied` WHERE `sid`=$sid) ORDER BY `up_date`;";
+                        $result_noti = mysqli_query($conn, $sql_noti);
+                        $rows_noti = mysqli_fetch_all($result_noti);
+                        if ($rows_noti != null) {
+                            foreach ($rows_noti as $noti) {
+                                if ($noti[0] != "under review") {
+                                    $noNotifications=false;
+                                    if($noti[0]=="accepted")
+                                    {
+                                       echo" <li class='border border-dark m-2'><small class='text-center dropdown-item'>$noti[2] has accepted your application for $noti[1] job.</small></li> ";
+                                    }
+                                    else if($noti[0]=="rejected")
+                                    {
+                                       echo" <li class='border border-dark m-2'><small class='text-center dropdown-item'>$noti[2] has rejected your application for $noti[1] job.</small></li> ";
+                                    }
+
+                                }
+                            }
+                        }
+                        if ($noNotifications)
+                            echo "
+                            <li>
+                        <p class='text-center'>No Notifications</p>
+                        </li>
+                        ";
+                        ?>
+    
+                    </ul>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link pe-5" href="#" id="account" role="button" data-bs-toggle="dropdown" aria-expanded="false">
