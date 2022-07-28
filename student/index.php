@@ -28,6 +28,14 @@ $row_length = mysqli_num_rows($result);
 if ($row_length > 0) {
     $match = true;
     $rows = mysqli_fetch_all($result);
+    foreach($rows as $key=>$row)
+    {
+        $rows[$key][1]=ucfirst($row[1]);
+        $rows[$key][2]=ucfirst($row[2]);
+        $rows[$key][3]=ucfirst($row[3]);
+        $rows[$key][4]=ucfirst($row[4]);
+    }
+    echo var_dump($rows);
     $first = json_encode($rows[0]);
 } else {
     $match = false;
