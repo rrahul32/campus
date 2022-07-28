@@ -22,7 +22,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/_template.php';
     <div class="row">
         <h1>Companies</h1>
     </div>
-<div class="row m-3 p-3 overflow-auto">
+<div class="row m-3 p-3 overflow-auto justify-content-center">
     <?php
     if ($rows == null)
         echo "
@@ -32,11 +32,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/_template.php';
     ";
     else {
         foreach($rows as $row)
-        echo "<div class='card' style='width: 18rem;'>
+        echo "<div class='card m-2' style='width: 18rem; background-color:beige;'>
   <div class='card-body'>
     <h5 class='card-title'>".ucfirst($row[2])."</h5>
-    <h6 class='card-subtitle mb-2 text-muted'>".ucfirst($row[3])."</h6>
-    <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h6 class='card-subtitle mb-2 text-muted'> Location: ".ucfirst($row[3])."</h6>
+    <h6 class='card-subtitle mb-2 text-muted'> Email: $row[1]</h6>
   </div>
 </div>";
     }

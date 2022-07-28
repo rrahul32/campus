@@ -18,10 +18,10 @@ $sid=$_SESSION['sid'];
 if (isset($_GET['search'])) {
     $search = $_GET['search'];
     $searchLower = strtolower($search);
-    $sql = "SELECT `jid`,`jname`,`cname`,`loc`,`jdesc`,`jdate`,`vacancy_no` FROM `job` JOIN `company` ON `job`.`cid`=`company`.`cid` WHERE `jname` like '%$searchLower%' ORDER BY `jid` DESC;";
+    $sql = "SELECT `jid`,`jname`,`cname`,`loc`,`jdesc`,`jdate`,`vacancy_no`,`salary` FROM `job` JOIN `company` ON `job`.`cid`=`company`.`cid` WHERE `jname` like '%$searchLower%' ORDER BY `jid` DESC;";
     
 } else {
-    $sql = "SELECT `jid`,`jname`,`cname`,`loc`,`jdesc`,`jdate`,`vacancy_no` FROM `job` JOIN `company`ON `job`.`cid`=`company`.`cid` ORDER BY `jid` DESC;";
+    $sql = "SELECT `jid`,`jname`,`cname`,`loc`,`jdesc`,`jdate`,`vacancy_no`,`salary` FROM `job` JOIN `company`ON `job`.`cid`=`company`.`cid` ORDER BY `jid` DESC;";
 }
 $result = mysqli_query($conn, $sql);
 $row_length = mysqli_num_rows($result);
@@ -35,7 +35,7 @@ if ($row_length > 0) {
         $rows[$key][3]=ucfirst($row[3]);
         $rows[$key][4]=ucfirst($row[4]);
     }
-    echo var_dump($rows);
+    //echo var_dump($rows);
     $first = json_encode($rows[0]);
 } else {
     $match = false;
@@ -82,6 +82,7 @@ else
         loc = document.getElementById("location");
         desc = document.getElementById("jobDescription");
         jid = document.getElementById("jid");
+        salary=document.getElementById("salary");
         apply=document.getElementById("applyNow");
         if(applied)
         {
@@ -91,13 +92,13 @@ else
         else{
         apply.value="Apply Now";
         apply.disabled=false;
-
         }
         jid.value=num[0];
         title.innerText = `${num[1]}`;
         cname.innerText = `${num[2]}`;
         loc.innerText = `${num[3]}`;
         desc.innerText = `${num[4]}`;
+        salary.innerText=`Salary: ${num[7]}`;
 
     }
 </script>
@@ -163,6 +164,7 @@ else
                     <h3 class='card-title'><b id="jobTitle"></b></h3>
                     <h5 class='card-title' id="companyName"></h5>
                     <h6 class='card-subtitle mb-2 text-muted' id="location"></h6>
+                    <h6 class='card-subtitle mb-2 text-muted' id="salary"></h6>
                     <p class='card-text' id="jobDescription"></p>
                     <form action="" method="post">
                         <input type="hidden" name="jid" id="jid" value="">
