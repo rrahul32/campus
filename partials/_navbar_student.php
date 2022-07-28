@@ -1,10 +1,13 @@
+<?php
+
+?>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand p-0" href="/campus/student">
             <div class="row">
                 <img class="col" src="/campus/images/index.png" alt="CRP" width="50" height="50" class="d-inline-block align-text-top">
-                <div class="col">Campus Recruitment Portal<br>
-                    <center><em><small>Student</small></em></center>
+                <div class="col text-center">Campus Recruitment Portal<br>
+                    <em><small>Student</small></em>
                 </div>
             </div>
         </a>
@@ -34,6 +37,8 @@
         
                         <?php
                         //Checking for notifications
+                        $sid=$_SESSION['sid'];
+                        include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/config.php';
                         $noNotifications = true;
                         $sql_noti = "SELECT `appstatus`,`jname`,`cname` FROM `appstatus` JOIN `applied` ON `appstatus`.`appid`=`applied`.`appid` JOIN `job` ON `applied`.`jid`=`job`.`jid` JOIN `company` ON `company`.`cid`=`job`.`cid` WHERE `appstatus`.`appid`IN (SELECT `appid` FROM `applied` WHERE `sid`=$sid) ORDER BY `up_date`;";
                         $result_noti = mysqli_query($conn, $sql_noti);
