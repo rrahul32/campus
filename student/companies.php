@@ -13,7 +13,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/config.php';
 $sql = "SELECT * FROM `company`;";
 $result = mysqli_query($conn, $sql);
 $rows = mysqli_fetch_all($result);
-echo var_dump($rows);
+//echo var_dump($rows);
 
 $pageTitle = "Companies: Campus Recruitment Management System";
 include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/_template.php';

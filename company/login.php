@@ -14,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!$row)
         $exists = false;
     else {
+        $cid = $row[4];
         $cname = $row[2];
         $loc = $row[3];
         $pass_match = ($password == $row[0]);
@@ -21,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['cname'] = $cname;
             $_SESSION['loggedin'] = true;
             $_SESSION['type'] = "company";
+            $_SESSION['cid'] = $cid;
             header("Location: /campus/company");
         }
     }
