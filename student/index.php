@@ -97,7 +97,7 @@ else
         title.innerText = `${num[1]}`;
         cname.innerText = `${num[2]}`;
         loc.innerText = `${num[3]}`;
-        desc.innerText = `${num[4]}`;
+        desc.innerText = `Description:\n${num[4]}`;
         salary.innerText=`Salary: ${num[7]}`;
 
     }
