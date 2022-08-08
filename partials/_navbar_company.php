@@ -12,10 +12,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="/campus/company">Post Jobs</a>
+          <a class="nav-link" href="/campus/company/post.php">Post Jobs</a>
         </li>
         <li class="nav-item">
-                    <a class="nav-link" href="/campus/student/companies.php">Students</a>
+                    <a class="nav-link" href="/campus/company/students.php">Students</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/campus/aboutus.php">About Us</a>
@@ -59,9 +59,9 @@
                     <img src="/campus/images/account.svg" alt="Account" height="25" width="25">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="account">
-                    <li><a class="dropdown-item " href="/campus/student/profile.php">Profile</a></li>
-                    <li><a class="dropdown-item " href="/campus/student/changepass.php">Change Password</a></li>
-                    <li><a class="dropdown-item " href="/campus/student/appliedjobs.php">Jobs Applied</a></li>
+                    <li><a class="dropdown-item " href="/campus/company/profile.php">Profile</a></li>
+                    <li><a class="dropdown-item " href="/campus/company/changepass.php">Change Password</a></li>
+                    <li><a class="dropdown-item " href="/campus/company/postedjobs.php">Jobs Posted</a></li>
                     <li><a class="dropdown-item " href="/campus/logout.php">Logout</a></li>
                 </ul>
             </li>

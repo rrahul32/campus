@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $loc = $row[3];
         $pass_match = ($password == $row[0]);
         if ($pass_match) {
-            $_SESSION['cname'] = $cname;
+            $_SESSION['email'] = $email;
             $_SESSION['loggedin'] = true;
             $_SESSION['type'] = "company";
             $_SESSION['cid'] = $cid;
