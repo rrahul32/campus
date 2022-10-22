@@ -62,6 +62,7 @@
                     <li><a class="dropdown-item " href="/campus/company/profile.php">Profile</a></li>
                     <li><a class="dropdown-item " href="/campus/company/changepass.php">Change Password</a></li>
                     <li><a class="dropdown-item " href="/campus/company/postedjobs.php">Jobs Posted</a></li>
+                    <li><a class="dropdown-item " href="/campus/company/applications.php">Applications</a></li>
                     <li><a class="dropdown-item " href="/campus/logout.php">Logout</a></li>
                 </ul>
             </li>

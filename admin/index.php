@@ -11,20 +11,23 @@ header("Location: /campus");
 $pageTitle="Admin Dashboard: Welcome to Campus Recruitment Portal";
 include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_template.php';
 ?>
-<div class="container text-center border border-2 mt-3 mx-auto" id="contents">
+<style>
+    .list-group-item:hover{
+        background-color: blue;
+        color:white;
+    }
+</style>
+<div class="col-xl-6 col text-center border mx-auto bg-white mt-5" id="contents">
     <h2 class="p-3 ">Admin Dashboard</h2>
-    <div class="col">
-        <h5>Manage Students Details</h5>
-    </div>
-    <div class="col">
-        <h5>Manage Registered Companies</h5>
-    </div>
-    <div class="col">
-        <h5>Manage Posted Jobs</h5>
-    </div>
-    <div class="col">
-        <h5>Manage Applications</h5>
-    </div>
+    <div class="list-group" >
+  <a href="/campus/admin/registeredcomp.php" class="list-group-item list-group-item-action" >Manage Registered Companies</a>
+  <a href="/campus/admin/stuacademic.php" class="list-group-item list-group-item-action">Manage Students Academic Details</a>
+  <a href="/campus/admin/registeredstu.php" class="list-group-item list-group-item-action">Manage Registered Students Jobs</a>
+  <a href="/campus/admin/postedjobs.php" class="list-group-item list-group-item-action">Manage Posted Jobs</a>
+  <a href="/campus/admin/applications.php" class="list-group-item list-group-item-action">Manage Applications</a>
+</div>
+    
+
 </div>
 
 <?php

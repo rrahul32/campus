@@ -41,13 +41,14 @@ $sql = "SELECT `applied`.`appid`, `appdate`, `jname`, `jdate`, `applied`.`sid`, 
 $result = mysqli_query($conn, $sql);
 if ($result) {
     $rows = mysqli_fetch_all($result);
-   // print_r($rows);
+   //echo var_dump($rows);
 } else
     $rows = null;
 //get request completed
 
 $pageTitle = "Applications: Campus Recruitment Management System";
 include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/_template.php';
+echo "<script>rows=".json_encode($rows)."</script>";
 ?>
 <!-- student applications -->
 <div id="alert"></div>
@@ -55,6 +56,17 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/_template.php';
     <h2>
         Applications
     </h2>
+    <ul class="nav nav-tabs mb-1" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link sortbutton active" type="button" role="tab" onclick="showCards(rows)" >All</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link sortbutton" id="profile-tab" type="button" role="tab" onclick="showCards(rows,'accepted')" aria-selected="false">Accepted</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link sortbutton" id="contact-tab" type="button" role="tab" onclick="showCards(rows,'rejected')" aria-selected="false">Rejected</button>
+  </li>
+</ul>
             <div class="row g-3" id="card" >
             </div>
     <div id="detailCard"></div>
@@ -112,23 +124,6 @@ function createModal(status,appid){
     function viewDetails(row) {
         //console.log(row);
         const target = document.getElementById('detailCard');
-        /*target.innerHTML = `
-        <div class="card">
-  <div class="card-body">
-    <h5 class="card-title">Job: ${firstLetterUpper(row[2])}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Date Posted: ${row[3]}</h6>
-    <h6 class="card-subtitle mb-2 text-muted">Applicant: ${firstLetterUpper(row[5])} ${firstLetterUpper(row[6])}</h6>
-    <h6 class="card-title mb-2"><strong><u>Applicant Details</u></strong></h6>
-    <p class="card-text mb-0">Course: ${firstLetterUpper(row[7])} </p>
-    <p class="card-text mt-0">Percentage: ${row[8]} </p>
-    <div id="modal"></div>
-    <button class="btn btn-primary" onclick="createModal('Accept',${row[0]})">Accept</button>
-    <button class="btn btn-primary" onclick="createModal('Reject',${row[0]})">Reject</button>
-
-  </div>
-</div>
-        `;*/
-
     target.innerHTML =`
     <div class="modal fade" id="detailsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -156,10 +151,17 @@ function createModal(status,appid){
     modal.show();
     }
 
-    function showCards(rows) {
+    //show cards
+
+    function showCards(rows,sorte=null) {
         const target = document.getElementById('card');
-        for(i=0;i<5;i++)
+        target.innerHTML='';
+       // for(i=0;i<5;i++)
+       count=0;
         rows.forEach((row) => {
+          if(row[9] == sorte || sorte==null)
+          {
+            count++;
             //console.log(row);
             const col = document.createElement('div');
             col.setAttribute("class","col");
@@ -190,8 +192,18 @@ function createModal(status,appid){
             card.appendChild(link);
             }
             target.appendChild(col);
+          }
         })
+        if(count==0)
+        target.innerHTML=`<h3>No Appications Found!</h3>`
     }
+    //button active
+    document.querySelectorAll('.sortbutton').forEach(button=>{
+      button.addEventListener('click',()=>{
+        buttonb= new bootstrap.Tab(button)
+        buttonb.show()
+  })
+  })
 </script>
 <?php
 if($appstatusUpdated)
