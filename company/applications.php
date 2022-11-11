@@ -54,8 +54,9 @@ echo "<script>rows=".json_encode($rows)."</script>";
 <div id="alert"></div>
 <div class="container text-center mt-3 p-2 justify-content-center">
     <h2>
-        Applications
+        <mark style="background-color:#d08181">Applications</mark>
     </h2>
+    <div class="" style="background-color:#d9808054">
     <ul class="nav nav-tabs mb-1" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
     <button class="nav-link sortbutton active" type="button" role="tab" onclick="showCards(rows)" >All</button>
@@ -67,6 +68,7 @@ echo "<script>rows=".json_encode($rows)."</script>";
     <button class="nav-link sortbutton" id="contact-tab" type="button" role="tab" onclick="showCards(rows,'rejected')" aria-selected="false">Rejected</button>
   </li>
 </ul>
+    </div>
             <div class="row g-3" id="card" >
             </div>
     <div id="detailCard"></div>
@@ -195,7 +197,7 @@ function createModal(status,appid){
           }
         })
         if(count==0)
-        target.innerHTML=`<h3>No Appications Found!</h3>`
+        target.innerHTML=`<h3 style="background-color:#d08181">No Appications Found!</h3>`
     }
     //button active
     document.querySelectorAll('.sortbutton').forEach(button=>{

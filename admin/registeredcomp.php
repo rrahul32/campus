@@ -11,6 +11,16 @@ if (isset($_SESSION['loggedin'])) {
   include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/config.php';
 
 //post request
+if(isset($_POST['status']))
+{
+$status=$_POST['status'];
+$cid=$_POST['cid'];
+$sql_stat="UPDATE `company` SET `status`='$status' WHERE `cid`=$cid ";
+$res_stat=mysqli_query($conn,$sql_stat);
+}
+
+
+
 if(isset($_POST['email']))
 {
   $email=$_POST['email'];
@@ -27,7 +37,7 @@ if(isset($_POST['email']))
 //end post request
 
 //get company details
-$sql = "SELECT `email`, `cname`, `loc` , `ceo`, `website`, `pwd` FROM `company`;";
+$sql = "SELECT `email`, `cname`, `loc` , `ceo`, `website`, `pwd`,`status`,`cid` FROM `company`;";
 $result = mysqli_query($conn, $sql);
 if ($result)
   $rows = mysqli_fetch_all($result);
@@ -49,7 +59,7 @@ echo "<script>const rows=".json_encode($rows)."</script>";
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
     <?php endif ?>
-  <table class="table table-bordered">
+  <table class="table table-bordered" style="background-color:#d08181">
     <thead>
       <tr>
         <th scope="col">S.No.</th>
@@ -60,6 +70,7 @@ echo "<script>const rows=".json_encode($rows)."</script>";
         <th scope="col">Website</th>
         <th scope="col">Password</th>
         <th scope="col">Edit Details</th>
+        <th scope="col">Accept/Reject</th>
       </tr>
     </thead>
     <tbody>
@@ -74,16 +85,33 @@ echo "<script>const rows=".json_encode($rows)."</script>";
               ?>
               <td> <?php echo $row[$i] ?></td>
             <?php endfor ?>
-            <td><input class="form-control" type="password" value="<?php echo $row[5] ?>" aria-label="readonly input example" readonly style="width:auto;;display:inline">
-              <a href="javascript:void(0);" onclick="toggleEye(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye ms-2" viewBox="0 0 16 16">
+            <td>
+            <div class="d-flex">  
+            <div class="col"><input class="form-control" type="password" value="<?php echo $row[5] ?>" aria-label="readonly input example" readonly style="width:auto;;display:inline"></div>
+            <div class="col"><a href="javascript:void(0);" onclick="toggleEye(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye ms-2" viewBox="0 0 16 16">
                   <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
                   <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                </svg></a>
+                </svg></a></div>
+            </div>
             </td>
-            <td class="text-center"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editDetails" data-bs-sno="<?php echo $sno-2 ?>">
+            <td class="text-center" ><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editDetails" data-bs-sno="<?php echo $sno-2 ?>">
                 Edit
               </button>
             </td>
+            <?php if($row[6]=="pending") 
+            echo "<td class='text-center'>
+              <button type='button' class='btn btn-success' onclick='cmpStatus(\"accepted\",$row[7])'>
+                Accept
+              </button>
+              <button type='button' class='btn btn-danger' onclick='cmpStatus(\"rejected\",$row[7])'>
+                Reject
+              </button>
+            </td>";
+            else if($row[6]=="accepted")
+            echo "<td><i><font color='green'>Accepted</font></i></td>";
+            else if($row[6]=="rejected")
+            echo "<td><i><font color='red'>Rejected</font></i></td>";
+            ?> 
           </tr>
         <?php endforeach ?>
       <?php else : ?>
@@ -91,6 +119,13 @@ echo "<script>const rows=".json_encode($rows)."</script>";
       <?php endif ?>
     </tbody>
   </table>
+</div>
+
+<div>
+  <form action="" method="post" name="statusForm">
+    <input type="hidden" name="status">
+    <input type="hidden" name="cid">
+  </form>
 </div>
 
 <div class="modal fade" id="editDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -132,6 +167,17 @@ echo "<script>const rows=".json_encode($rows)."</script>";
 </div>
 
 <script>
+
+function cmpStatus(status, num)
+{
+  const targetForm= document.forms['statusForm'];
+  targetForm['status'].value=status;
+  targetForm['cid'].value=num;
+  targetForm.submit();
+
+}
+
+
   //altering modal content
   const modal = document.getElementById('editDetails')
   modal.addEventListener('show.bs.modal', event => {
@@ -158,7 +204,7 @@ echo "<script>const rows=".json_encode($rows)."</script>";
   
   //toggleEye
   function toggleEye(target) {
-    const input = target.parentNode.querySelector('input');
+    const input = target.parentNode.parentNode.querySelector('input');
     if (input.type == "password") {
       input.type = "text";
       target.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash ms-2" viewBox="0 0 16 16">

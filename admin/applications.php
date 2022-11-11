@@ -38,7 +38,7 @@ echo "<script>const rows=" . json_encode($rows) . "</script>";
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <?php endif ?>
-  <table class="table table-bordered">
+  <table class="table table-bordered" style="background-color:#d08181">
     <thead>
       <tr>
         <th scope="col">S.No.</th>

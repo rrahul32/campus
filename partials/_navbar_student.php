@@ -33,31 +33,56 @@
                 <a class="nav-link pe-5" href="#" id="notifications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="/campus/images/notifications.svg" alt="Account" height="25" width="25">
                 </a>
-                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="notifications" style="min-width:350px">
+                <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="notifications" style="min-width:350px">
         
                         <?php
                         //Checking for notifications
                         $sid=$_SESSION['sid'];
                         include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/config.php';
                         $noNotifications = true;
-                        $sql_noti = "SELECT `appstatus`,`jname`,`cname` FROM `appstatus` JOIN `applied` ON `appstatus`.`appid`=`applied`.`appid` JOIN `job` ON `applied`.`jid`=`job`.`jid` JOIN `company` ON `company`.`cid`=`job`.`cid` WHERE `appstatus`.`appid`IN (SELECT `appid` FROM `applied` WHERE `sid`=$sid) ORDER BY `up_date`;";
-                        $result_noti = mysqli_query($conn, $sql_noti);
-                        $rows_noti = mysqli_fetch_all($result_noti);
-                        if ($rows_noti != null) {
-                            foreach ($rows_noti as $noti) {
-                                if ($noti[0] != "under review") {
-                                    $noNotifications=false;
-                                    if($noti[0]=="accepted")
-                                    {
-                                       echo" <li class='border border-dark m-2'><small class='text-center dropdown-item'>$noti[2] has accepted your application for $noti[1] job.</small></li> ";
-                                    }
-                                    else if($noti[0]=="rejected")
-                                    {
-                                       echo" <li class='border border-dark m-2'><small class='text-center dropdown-item'>$noti[2] has rejected your application for $noti[1] job.</small></li> ";
-                                    }
+                        //CHECKING FOR APPLIED JOB Status
+                        // $sql_noti = "SELECT `appstatus`,`jname`,`cname` FROM `appstatus` JOIN `applied` ON `appstatus`.`appid`=`applied`.`appid` JOIN `job` ON `applied`.`jid`=`job`.`jid` JOIN `company` ON `company`.`cid`=`job`.`cid` WHERE `appstatus`.`appid`IN (SELECT `appid` FROM `applied` WHERE `sid`=$sid) ORDER BY `up_date`;";
+                        // $result_noti = mysqli_query($conn, $sql_noti);
+                        // $rows_noti = mysqli_fetch_all($result_noti);
+                        // if ($rows_noti != null) {
+                        //     foreach ($rows_noti as $noti) {
+                        //         if ($noti[0] != "under review") {
+                        //             $noNotifications=false;
+                        //             if($noti[0]=="accepted")
+                        //             {
+                        //                echo" <li class='m-2'><small class='text-center dropdown-item dropdown-item'>$noti[2] has accepted your application for $noti[1] job.</small></li> ";
+                        //             }
+                        //             else if($noti[0]=="rejected")
+                        //             {
+                        //                echo" <li class='m-2'><small class='text-center dropdown-item'>$noti[2] has rejected your application for $noti[1] job.</small></li> ";
+                        //             }
 
-                                }
-                            }
+                        //         }
+                        //     }
+                        // }
+                        // //checking for job offers
+                        // $sql_offer="SELECT `cname` FROM company WHERE `cid` IN (SELECT `cid` FROM `job` WHERE `jid` IN (SELECT `jid` FROM `offeredjobs` WHERE `sid`=$sid)) ORDER BY `odate`";
+                        // $res_offer= mysqli_query($conn,$sql_offer);
+                        // while($row=mysqli_fetch_row($res_offer))
+                        // {
+                        //     $noNotifications=false;
+                        //     echo "<li class='m-2'><small class='text-center dropdown-item dropdown-item'>You have a new job offer from $row[0]</small></li>";
+                        // }
+
+                        //checking for notifications
+                        $sql_noti= "SELECT `appstatus` AS `status`,`jname`,`cname`, `appdate` AS `date` FROM `appstatus` JOIN `applied` ON `appstatus`.`appid`=`applied`.`appid` JOIN `job` ON `applied`.`jid`=`job`.`jid` JOIN `company` ON `company`.`cid`=`job`.`cid` WHERE `appstatus`.`appid`IN (SELECT `appid` FROM `applied` WHERE `sid`=$sid) AND `appstatus` != 'under review'
+                        UNION ALL 
+                        SELECT `offeredjobs`.`status`, `jname`, `cname`, `odate` AS `date` FROM `offeredjobs` JOIN `job` ON `offeredjobs`.`jid`=`job`.`jid` JOIN `company` ON `job`.`cid`=`company`.`cid` WHERE `offeredjobs`.`sid`=$sid AND `offeredjobs`.`status`='pending'
+                        ORDER BY `date` DESC
+                        ";
+                        $res_noti= mysqli_query($conn,$sql_noti);
+                        while($row_noti= mysqli_fetch_row($res_noti))
+                        {
+                            if($row_noti[0]=='pending')
+                            echo "<li class='m-2'><small class='text-center dropdown-item dropdown-item'>You have a new job offer from ".ucwords($row_noti[2])."</small></li>";
+                            else
+                            echo "<li class='m-2'><small class='text-center dropdown-item dropdown-item'>".ucwords($row_noti[2])." has $row_noti[0] your job application for ".ucwords($row_noti[1])."</small></li>";
+                            $noNotifications=false;
                         }
                         if ($noNotifications)
                             echo "
@@ -77,6 +102,7 @@
                     <li><a class="dropdown-item " href="/campus/student/profile.php">Profile</a></li>
                     <li><a class="dropdown-item " href="/campus/student/changepass.php">Change Password</a></li>
                     <li><a class="dropdown-item " href="/campus/student/appliedjobs.php">Jobs Applied</a></li>
+                    <li><a class="dropdown-item " href="/campus/student/jobsoffered.php">Job Offers</a></li>
                     <li><a class="dropdown-item " href="/campus/logout.php">Logout</a></li>
                 </ul>
             </li>

@@ -11,6 +11,17 @@ if (isset($_SESSION['loggedin'])) {
   include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/config.php';
 
 //post request
+
+//post request
+if(isset($_POST['status']))
+{
+$status=$_POST['status'];
+$sid=$_POST['sid'];
+$sql_stat="UPDATE `student` SET `stat`='$status' WHERE `sid`=$sid ";
+$res_stat=mysqli_query($conn,$sql_stat);
+}
+
+
 if(isset($_POST['email']))
 {
   $email=$_POST['email'];
@@ -24,8 +35,8 @@ if(isset($_POST['email']))
 }
 //end post request
 
-//get company details
-$sql = "SELECT `fname`, `lname`, `email` , `pwd` FROM `student`;";
+//get student details
+$sql = "SELECT `fname`, `lname`, `email` , `pwd`,`stat`,`sid` FROM `student`;";
 $result = mysqli_query($conn, $sql);
 if ($result)
   $rows = mysqli_fetch_all($result);
@@ -47,7 +58,7 @@ echo "<script>const rows=".json_encode($rows)."</script>";
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
     <?php endif ?>
-  <table class="table table-bordered">
+  <table class="table table-bordered" style="background-color:#d08181">
     <thead>
       <tr>
         <th scope="col">S.No.</th>
@@ -56,6 +67,7 @@ echo "<script>const rows=".json_encode($rows)."</script>";
         <th scope="col">Email</th>
         <th scope="col">Password</th>
         <th scope="col">Edit Details</th>
+        <th scope="col">Accept/Reject</th>
       </tr>
     </thead>
     <tbody>
@@ -80,6 +92,20 @@ echo "<script>const rows=".json_encode($rows)."</script>";
                 Edit
               </button>
             </td>
+            <?php if($row[4]=="pending") 
+            echo "<td class='text-center'>
+              <button type='button' class='btn btn-success' onclick='cmpStatus(\"accepted\",$row[5])'>
+                Accept
+              </button>
+              <button type='button' class='btn btn-danger' onclick='cmpStatus(\"rejected\",$row[5])'>
+                Reject
+              </button>
+            </td>";
+            else if($row[4]=="accepted")
+            echo "<td><i><font color='green'>Accepted</font></i></td>";
+            else if($row[4]=="rejected")
+            echo "<td><i><font color='red'>Rejected</font></i></td>";
+            ?> 
           </tr>
         <?php endforeach ?>
       <?php else : ?>
@@ -87,6 +113,13 @@ echo "<script>const rows=".json_encode($rows)."</script>";
       <?php endif ?>
     </tbody>
   </table>
+</div>
+
+<div>
+  <form action="" method="post" name="statusForm">
+    <input type="hidden" name="status">
+    <input type="hidden" name="sid">
+  </form>
 </div>
 
 <div class="modal fade" id="editDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -120,6 +153,16 @@ echo "<script>const rows=".json_encode($rows)."</script>";
 </div>
 
 <script>
+
+function cmpStatus(status, num)
+{
+  const targetForm= document.forms['statusForm'];
+  targetForm['status'].value=status;
+  targetForm['sid'].value=num;
+  targetForm.submit();
+
+}
+
   //altering modal content
   const modal = document.getElementById('editDetails')
   modal.addEventListener('show.bs.modal', event => {

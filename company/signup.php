@@ -29,7 +29,7 @@ $pageTitle = "Signup To Campus Recruitment Portal";
 include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_template.php';
 ?>
 <form action="/campus/company/signup.php" method="POST">
-    <div class="container my-5 col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 border border-3 rounded px-5 py-3">
+    <div class="container my-5 col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 border border-3 rounded px-5 py-3" style="background-color:#6290b9">
         <div class="row">
             <h1 class="text-center">
                 Sign Up
@@ -59,7 +59,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_template.php';
             <label for="floatingInput">Email address</label>
         </div>
         <div class="form-floating pb-3">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required>
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password should contain atleast one digit, uppercase letter and lowercase letter and should be atleast 8 characters in length" required>
             <label for="floatingPassword">Password</label>
         </div>
         <div class="form-floating pb-3">

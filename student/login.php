@@ -19,8 +19,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         $fname=$row[2];
         $lname=$row[3];
         $sid=$row[4];
+        $status=$row[5];
         $pass_match=($password==$row[0]);
-        if($pass_match)
+        if($pass_match&&$status=="accepted")
         {
            $_SESSION["email"]=$email;
            $_SESSION["sid"]=$sid;
@@ -28,13 +29,17 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
            $_SESSION["type"]="student";
            header("Location: /campus/student");
         }
+        else if($status=="pending")
+        echo "<script>alert('Your application is pending')</script>";
+        else if($status=="rejected")
+        echo "<script>alert('Your application has been rejected!!')</script>";
 
     }
 
     }
 ?>
 <form action="/campus/student/login.php" method="post">
-    <div class="container my-5 col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 border border-3 rounded px-5 py-3">
+    <div class="container my-5 col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 border border-3 rounded px-5 py-3" style='background-color:#169b82'>
         <div class="row text-center">
             <h2>Student Login</h2>
         </div>

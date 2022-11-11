@@ -19,7 +19,7 @@
 </script>
 </head>
 
-<body class="bg-light">
+<body class="bg-light" background="/campus/images/bg.png">
   <header>
     <?php 
    if(!isset($_SESSION['loggedin']))

@@ -10,7 +10,7 @@ $sid = $_SESSION['sid'];
 
 //getting companies
 include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/config.php';
-$sql = "SELECT * FROM `company`;";
+$sql = "SELECT * FROM `company` WHERE `status`='accepted';";
 $result = mysqli_query($conn, $sql);
 $rows = mysqli_fetch_all($result);
 //echo var_dump($rows);
@@ -20,7 +20,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/_template.php';
 ?>
 <div class="container mx-auto mt-3 border p-4 text-center justify-content-center">
     <div class="row">
-        <h1>Companies</h1>
+        <h1><mark style="background-color:#e3ceb4">Companies</mark></h1>
     </div>
 <div class="row m-3 p-3 overflow-auto justify-content-center">
     <?php

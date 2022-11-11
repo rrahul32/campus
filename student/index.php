@@ -130,7 +130,7 @@ else
                     $applied=mysqli_num_rows($result)>0;
                     //echo var_dump($value);
                     echo "<div class='card mt-3'>
-                    <div class='card-body'>
+                    <div class='card-body' style='background-color:#fdeed2'>
                         <h5 class='card-title'><b>$value[1]</b></h5>
                         <h6 class='card-title'>$value[2]</h6>
                         <h6 class='card-subtitle mb-2 text-muted'>$value[3]</h6>";
@@ -160,7 +160,7 @@ else
         </div>
         <div class='col-6 sticky-top overflow-auto' id='jobDetail'>
             <div class='card mt-3'>
-                <div class='card-body text-center'>
+                <div class='card-body text-center' style='background-color:#fdeed2'>
                     <h3 class='card-title'><b id="jobTitle"></b></h3>
                     <h5 class='card-title' id="companyName"></h5>
                     <h6 class='card-subtitle mb-2 text-muted' id="location"></h6>

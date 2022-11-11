@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     }
 ?>
 <form action="/campus/admin/login.php" method="post">
-    <div class="container my-5 col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 border border-3 rounded px-5 py-3">
+    <div class="container my-5 col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 border border-3 rounded px-5 py-3" style='background-color:#169b82'>
         <div class="row text-center">
             <h2>Login</h2>
         </div>

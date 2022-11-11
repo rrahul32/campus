@@ -17,19 +17,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $cid = $row[4];
         $cname = $row[2];
         $loc = $row[3];
+        $status= $row[7];
         $pass_match = ($password == $row[0]);
-        if ($pass_match) {
+       // echo $status;
+        if ($pass_match && $status=="accepted") {
             $_SESSION['email'] = $email;
             $_SESSION['loggedin'] = true;
             $_SESSION['type'] = "company";
             $_SESSION['cid'] = $cid;
             header("Location: /campus/company");
         }
+        else if($status=="pending")
+        echo "<script>alert('Your application is pending')</script>";
+        else if($status=="rejected")
+        echo "<script>alert('Your application has been rejected!!')</script>";
     }
 }
 ?>
 <form action="/campus/company/login.php" method="post">
-    <div class="container my-5 col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 border border-3 rounded px-5 py-3">
+    <div class="container my-5 col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 border border-3 rounded px-5 py-3" style='background-color:#169b82'>
         <div class="row text-center">
             <h2>Login</h2>
         </div>

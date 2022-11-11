@@ -28,7 +28,7 @@ if(isset($_POST['id']))
 //end post request
 
 //get company details
-$sql = "SELECT `jid`, `jname`, `cname` , `jdesc`, `jdate`, `vacancy_no`, `salary` FROM `job` JOIN `company` ON `job`.`jid`=`company`.`cid`;";
+$sql = "SELECT `jid`, `jname`, `cname` , `jdesc`, `jdate`, `vacancy_no`, `salary` FROM `job` JOIN `company` ON `job`.`cid`=`company`.`cid`;";
 $result = mysqli_query($conn, $sql);
 if ($result)
   $rows = mysqli_fetch_all($result);
@@ -50,7 +50,7 @@ echo "<script>const rows=".json_encode($rows)."</script>";
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
     <?php endif ?>
-  <table class="table table-bordered">
+  <table class="table table-bordered" style="background-color:#d08181">
     <thead>
       <tr>
         <th scope="col">S.No.</th>

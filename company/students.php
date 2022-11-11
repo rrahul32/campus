@@ -43,7 +43,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/_template.php';
 ?>
 <div class="container mx-auto mt-3 border p-4 text-center justify-content-center">
     <div class="row">
-        <h1>Students</h1>
+        <h1><mark style='background-color:#d08181'>Students</mark></h1>
     </div>
     <div class="row">
         <?php
@@ -63,7 +63,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/_template.php';
     ";
     else 
     {
-        echo "<table class='table'>
+        echo "<table class='table' style='background-color:#d08181'>
         <thead>
         <tr>
         <th scope='col'>S.No.</th>

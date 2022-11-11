@@ -4,6 +4,7 @@ $pass_match = true;
 $success = false;
 $duplicate = false;
 $emailInDb=false;
+$emailcheck=false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/config.php';
   $password = $_POST["password"];
@@ -16,13 +17,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $duplicate = true;
   else
   {
+    $emailcheck=true;
     $email_query = "SELECT * FROM `student_academic` WHERE `semail`='$email';";
-    $email_result = mysqli_query($conn, $duplicate_query);
-    $email_rows = mysqli_num_rows($duplicate_result);
+    $email_result = mysqli_query($conn, $email_query);
+    $email_rows = mysqli_num_rows($email_result);
     if ($email_rows)
     $emailInDb = true;
   }
-  if (($password == $cpassword)&&(!$duplicate))
+  if (($password == $cpassword)&&(!$duplicate)&&$emailInDb)
   {
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -39,7 +41,7 @@ $pageTitle = "Signup To Campus Recruitment Portal";
 include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_template.php';
 ?>
 <form action="/campus/student/signup.php" method="post">
-  <div class="container mt-5 border border-3 rounded col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 px-5 py-3">
+  <div class="container mt-5 border border-3 rounded col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-10 px-5 py-3" style="background-color:#6290b9">
     <div class="row">
       <h1 class="text-center">
         Student Sign Up
@@ -54,7 +56,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_template.php';
                 echo "<div class='alert alert-danger text-center col-10 mx-auto' role='alert'>Email already in use!</div>";
             else if(!$pass_match)
                 echo "<div class='alert alert-danger text-center col-10 mx-auto' role='alert'>Passwords do not match!</div>";
-              else if($emailInDb)
+              else if($emailcheck&&!$emailInDb)
               echo "<div class='alert alert-danger text-center col-10 mx-auto' role='alert'>Email not in college database! Please contact admin</div>";
             ?>
         </div>
@@ -73,7 +75,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_template.php';
       <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating pb-3">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required>
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password should contain atleast one digit, uppercase letter and lowercase letter and should be atleast 8 characters in length" required>
       <label for="floatingPassword">Password</label>
     </div>
     <div class="form-floating pb-3">
