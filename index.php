@@ -1,6 +1,5 @@
 <?php
 //echo $_SERVER['DOCUMENT_ROOT'];
-
 session_start();
 if (isset($_SESSION['loggedin'])) {
     //  if ($_SESSION['type'] == "company")

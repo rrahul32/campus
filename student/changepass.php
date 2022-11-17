@@ -64,7 +64,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/_template.php';
             <label for="curretnPassword">Current Password</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="New Password" required>
+            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="New Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password should contain atleast one digit, uppercase letter and lowercase letter and should be atleast 8 characters in length" required>
             <label for="newPassword">New Password</label>
         </div>
         <div class="form-floating mb-3">
