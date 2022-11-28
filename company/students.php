@@ -86,9 +86,15 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/_template.php';
             <td>".$row[0]."</td>
             <td>".ucwords($row[3])."</td>
             <td>$row[4]</td>";
-            if($jobs!=null)
-            echo "<td><button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#sendOffer' data-bs-id='$row_num'>Offer Job</button></td>";
-          echo "</tr>";
+            $sqljob="SELECT * FROM `offeredjobs` WHERE `sid`=$row[5] AND `jid` IN (SELECT `jid` FROM `job` WHERE `cid`=$cid)";
+            $resultjob= mysqli_query($conn,$sqljob);
+            if($jobs!=null && mysqli_num_rows($resultjob)==0)
+            echo "<td><button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#sendOffer' data-bs-id='$row[5]'>Offer Job</button></td>";
+            else if(mysqli_num_rows($resultjob)>0)
+            {
+                echo "<td>Job offer sent!</td>";
+            }
+            echo "</tr>";
           $row_num++;
         }
     }

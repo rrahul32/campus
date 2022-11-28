@@ -101,7 +101,7 @@ echo "<script> const rows=".json_encode($rows)."</script>";
 </form>
 <script>
     function submitForm(num,status,event){
-        document.forms["conform"]["oid"].value=rows[num][4];
+        document.forms["conform"]["oid"].value=rows[num][5];
         document.forms["conform"]["status"].value=status;
        document.forms["conform"].submit();
 
