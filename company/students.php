@@ -206,8 +206,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/_template.php';
         target = e;
         //console.log(target)
         document.querySelectorAll('.sort').forEach((ele) => {
-            if (ele.parentElement != target)
+            if (ele.parentElement != target){
                 ele.className = 'sort';
+                ele.parentElement.dataset.desc='false'
+            }
         })
 
         if (target.dataset.desc == 'false') {
