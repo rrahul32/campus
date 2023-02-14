@@ -166,7 +166,7 @@ else
                     <h6 class='card-subtitle mb-2 text-muted' id="location"></h6>
                     <h6 class='card-subtitle mb-2 text-muted' id="salary"></h6>
                     <p class='card-text' id="jobDescription"></p>
-                    <form action="" method="post">
+                    <form action="" method="post" onsubmit="return confirm('Are you sure you want to apply?')">
                         <input type="hidden" name="jid" id="jid" value="">
                     <input type="submit" class='btn btn-primary' name='applyNow' id='applyNow' value=''>
                     </form>

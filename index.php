@@ -11,11 +11,13 @@ if (isset($_SESSION['loggedin'])) {
         header("Location: /campus/student");
 }
 include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/config.php';
+
+
 //GET search
 if (isset($_GET['search'])) {
     $search = $_GET['search'];
     $searchLower = strtolower($search);
-    $sql = "SELECT `jid`,`jname`,`cname`,`loc`,`jdesc`,`jdate`,`vacancy_no`,`salary` FROM `job` JOIN `company` ON `job`.`cid`=`company`.`cid` WHERE `jname` like '%$searchLower%' ORDER BY `jid` DESC;";
+    $sql = "SELECT `jid`,`jname`,`cname`,`loc`,`jdesc`,`jdate`,`vacancy_no`,`salary` FROM `job` JOIN `company` ON `job`.`cid`=`company`.`cid` WHERE `jname` LIKE '%$searchLower%' ORDER BY `jid` DESC;";
     
 } else {
     $sql = "SELECT `jid`,`jname`,`cname`,`loc`,`jdesc`,`jdate`,`vacancy_no`,`salary` FROM `job` JOIN `company`ON `job`.`cid`=`company`.`cid` ORDER BY `jid` DESC;";
@@ -27,9 +29,9 @@ if ($row_length > 0) {
     $rows = mysqli_fetch_all($result);
     foreach($rows as $key=>$row)
     {
-        $rows[$key][1]=ucfirst($row[1]);
-        $rows[$key][2]=ucfirst($row[2]);
-        $rows[$key][3]=ucfirst($row[3]);
+        $rows[$key][1]=ucwords($row[1]);
+        $rows[$key][2]=ucwords($row[2]);
+        $rows[$key][3]=ucwords($row[3]);
         $rows[$key][4]=ucfirst($row[4]);
     }
     //echo var_dump($rows);
@@ -38,6 +40,7 @@ if ($row_length > 0) {
     $match = false;
 }
 //GET search end
+
 $pageTitle = "Welcome to Campus Recruitment Portal";
  include_once $_SERVER['DOCUMENT_ROOT']."/campus/partials/_template.php";
  if ($match)
@@ -53,6 +56,8 @@ else
         target = document.getElementById('jobDetail');
         footer = document.getElementsByTagName('footer')[0];
         target.style.height = `${visualViewport.height - footer.clientHeight}px`;
+        
+        
         if (match) {
             document.getElementsByClassName('stretched-link')[0].click();
 
@@ -78,7 +83,7 @@ else
     }
 </script>
 <div class="container-flex border py-5">
-    <form class=" col-6 mx-auto" action="" method="GET">
+    <form class="col-6 mx-auto" action="" method="GET">
         <div class="row">
             <div class="form-floating form-control-sm col-9 mx-auto">
                 <input type="text" class="form-control border-primary" id="search" placeholder="Company" name="search" required>
@@ -149,7 +154,7 @@ else
                 echo "<h2 class='col text-center'>No jobs found</h2>";
 
             ?>
-        <div class='1'> </div>
+        <div class='col-1'> </div>
     </div>
 </div>
 <?php include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_footer.php' ?>
