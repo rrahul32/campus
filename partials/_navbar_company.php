@@ -28,14 +28,14 @@
                 <a class="nav-link pe-5" href="#" id="notifications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="/campus/images/notifications.svg" alt="Account" height="25" width="25">
                 </a>
-                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="notifications" style="min-width:350px">
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="notifications" style="min-width:350px;z-index:10000;">
         
                         <?php
                         //Checking for notifications
                         $cid=$_SESSION['cid'];
                         include_once $_SERVER['DOCUMENT_ROOT'] . '/campus/partials/config.php';
                         $noNotifications = true;
-                        $sql_noti = "SELECT `fname`,`lname`,`jname` FROM `applied` JOIN `student` ON `applied`.`sid`=`student`.`sid` JOIN `job` ON `applied`.`jid`=`job`.`jid`  WHERE `applied`.`jid` IN (SELECT `jid` FROM `job` WHERE `cid`=$cid) ORDER BY `appdate`;";
+                        $sql_noti = "SELECT `fname`,`lname`,`jname` FROM `applied` JOIN `student` ON `applied`.`sid`=`student`.`sid` JOIN `job` ON `applied`.`jid`=`job`.`jid`  WHERE `applied`.`jid` IN (SELECT `jid` FROM `job` WHERE `cid`=$cid) ORDER BY `appdate` DESC;";
                         $result_noti = mysqli_query($conn, $sql_noti);
                         $rows_noti = mysqli_fetch_all($result_noti);
                         if ($rows_noti != null) {

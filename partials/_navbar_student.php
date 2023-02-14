@@ -33,7 +33,7 @@
                 <a class="nav-link pe-5" href="#" id="notifications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="/campus/images/notifications.svg" alt="Account" height="25" width="25">
                 </a>
-                <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="notifications" style="min-width:350px">
+                <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="notifications" style="min-width:350px;z-index:10000;">
         
                         <?php
                         //Checking for notifications
