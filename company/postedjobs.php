@@ -18,7 +18,7 @@ if (isset($_POST['type']))
         $vacancy = $_POST['vacancy'];
         $salary = $_POST['salary'];
         $desc = $_POST['desc'];
-        $sql = "UPDATE `job` SET `jname`='$title', `jdesc`='$desc', `vacancy_no`=$vacancy, `salary`=$salary";
+        $sql = "UPDATE `job` SET `jname`='$title', `jdesc`='$desc', `vacancy_no`=$vacancy, `salary`=$salary WHERE `jid`=$jid";
         $result = mysqli_query($conn, $sql);
         if ($result)
             $updated = true;

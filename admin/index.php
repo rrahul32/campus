@@ -24,7 +24,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/campus/partials/_template.php';
   <a href="/campus/admin/stuacademic.php" class="list-group-item list-group-item-action">Manage Students Academic Details</a>
   <a href="/campus/admin/registeredstu.php" class="list-group-item list-group-item-action">Manage Registered Students </a>
   <a href="/campus/admin/postedjobs.php" class="list-group-item list-group-item-action">Manage Posted Jobs</a>
-  <a href="/campus/admin/applications.php" class="list-group-item list-group-item-action">Manage Applications</a>
+  <a href="/campus/admin/applications.php" class="list-group-item list-group-item-action">View Applications</a>
 </div>
     
 
